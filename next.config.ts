@@ -15,6 +15,16 @@ const nextConfig: NextConfig = {
       },
     },
   },
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "tugas.hideo.id" }],
+        destination: "https://tasks.hideo.id/:path*",
+        permanent: true,
+      },
+    ];
+  },
 };
 
 export default nextConfig;
