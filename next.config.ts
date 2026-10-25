@@ -1,9 +1,12 @@
 import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
-  /* config options here */
-  cacheComponents: true,
-  partialPrefetching: true,
+  // cacheComponents disabled to allow dynamic SSR rendering with NextAuth
+  experimental: {
+    serverActions: {
+      bodySizeLimit: '5mb',
+    },
+  },
   turbopack: {
     rules: {
       "*.css": {

@@ -1,0 +1,44 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = "file:./dev.db"
+}
+
+model Account {
+  id                String  @id @default(cuid())
+  userId            String
+  type              String
+  provider          String
+  providerAccountId String
+  user              User    @relation(fields: [userId], references: [id], onDelete: Cascade)
+  @@unique([provider, providerAccountId])
+}
+
+model User {
+  id            String    @id @default(cuid())
+  email         String    @unique
+  password      String?
+  name          String?
+  discordId     String?   // User's Discord ID/Username
+  accounts      Account[]
+  todos         Todo[]
+}
+
+model Todo {
+  id          String   @id @default(cuid())
+  title       String
+  completed   Boolean  @default(false)
+  deadline    DateTime?
+  attachment  String?
+  userId      String
+  user        User     @relation(fields: [userId], references: [id])
+  createdAt   DateTime @default(now())
+}
+
+model WhatsAppSession {
+  id      String @id
+  content String
+}
