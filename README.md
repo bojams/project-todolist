@@ -8,7 +8,7 @@ A production-ready Todo List application built with modern technologies, featuri
 - **🔐 Authentication** - Secure login/register with NextAuth v5 (Credentials provider)
 - **📝 Task Management** - Create, read, update, delete tasks with full CRUD operations
 - **⏰ Deadline Tracking** - Date/time picker with WITA (Asia/Makassar) timezone support
-- **🔔 Smart Notifications** - Multi-channel notifications (Discord DM, Webhook)
+- **🔔 Smart Notifications** - Multi-channel notifications (Discord DM)
 - **👤 User Profile** - Edit name, Discord ID, password with validation
 - **🎨 Modern UI** - Dark mode, responsive design, smooth animations
 
@@ -19,7 +19,6 @@ A production-ready Todo List application built with modern technologies, featuri
   - Overdue alerts (when past deadline)
 - **Multi-channel:**
   - Discord Direct Messages (via Bot API)
-  - Discord Webhook support
 - **Real-time Scheduler** - Runs every minute via node-cron
 
 ### Security
@@ -40,9 +39,8 @@ A production-ready Todo List application built with modern technologies, featuri
 | **Styling** | Tailwind CSS + Shadcn UI |
 | **Animations** | Framer Motion |
 | **Validation** | Zod |
-| **Database** | Prisma ORM + SQLite |
 | **Scheduling** | node-cron |
-| **Notifications** | Discord Bot API + Webhooks |
+| **Notifications** | Discord Bot API |
 
 ## 📁 Project Structure
 
@@ -73,14 +71,10 @@ project-todolist/
 │   ├── lib/
 │   │   ├── db.ts             # Prisma client
 │   │   ├── schema.ts         # Zod validation schemas
-│   │   ├── scheduler.ts      # Notification scheduler
-│   │   └── whatsapp.ts       # WhatsApp integration
-│   ├── app/
-│   │   ├── actions.ts        # Server actions (CRUD)
-│   │   ├── auth.ts           # NextAuth configuration
-│   │   ├── updateAction.ts   # Update task action
-│   │   └── profile/
-│   │       └── discordTest.ts # Discord DM test action
+│   │   └── scheduler.ts      # Notification scheduler
+│   ├── actions.ts            # Server actions (CRUD)
+│   ├── auth.ts               # NextAuth configuration
+│   ├── updateAction.ts       # Update task action
 │   └── middleware.ts         # Auth middleware
 ├── public/
 │   └── uploads/              # File uploads
@@ -132,9 +126,6 @@ NEXTAUTH_SECRET="your-super-secret-key-here"
 
 # Discord Bot (for DM notifications)
 DISCORD_BOT_TOKEN="your-discord-bot-token"
-
-# Optional: Discord Webhook (fallback)
-DISCORD_WEBHOOK_URL="https://discord.com/api/webhooks/..."
 ```
 
 ### Discord Bot Setup
@@ -168,7 +159,7 @@ npm run lint         # Run ESLint
 npx prisma studio    # Open database GUI
 ```
 
-## 🔒 Security Checklist
+### Security Checklist
 
 - [x] Password hashing with bcrypt (cost 12)
 - [x] Zod validation on all inputs
@@ -183,18 +174,6 @@ npx prisma studio    # Open database GUI
 ## 📄 License
 
 MIT License - feel free to use for personal or commercial projects.
-
-## 🤝 Contributing
-
-1. Fork the repository
-2. Create feature branch (`git checkout -b feature/amazing-feature`)
-3. Commit changes (`git commit -m 'Add amazing feature'`)
-4. Push to branch (`git push origin feature/amazing-feature`)
-5. Open Pull Request
-
-## 📞 Support
-
-For issues or questions, please open an issue on GitHub.
 
 ---
 
